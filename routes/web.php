@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,15 +19,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/posts', [PostController::class, 'blog_index'])->name('blog.posts.index');
+Route::get('/posts/{id}', [PostController::class, 'blog_show'])->name('blog.posts.post');
+Route::get('/services', [ServiceController::class, 'blog_index'])->name('blog.services.index');
+Route::get('/services/service', [ServiceController::class, 'blog_index'])->name('blog.services.service');
+
+
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::resource('comments', App\Http\Controllers\CommentController::class);
+    Route::resource('manage/comments', App\Http\Controllers\CommentController::class);
 
-    Route::resource('posts', App\Http\Controllers\PostController::class);
+    Route::resource('manage/posts', App\Http\Controllers\PostController::class);
 
-    Route::resource('categories', App\Http\Controllers\CategoryController::class);
+    Route::resource('manage/categories', App\Http\Controllers\CategoryController::class);
 
-    Route::resource('services', App\Http\Controllers\ServiceController::class);
+    Route::resource('manage/services', App\Http\Controllers\ServiceController::class);
 });

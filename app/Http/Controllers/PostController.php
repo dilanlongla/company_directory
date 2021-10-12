@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\PostDataTable;
-use App\Http\Requests;
 use App\Http\Requests\CreatePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
 use Flash;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Http\Request;
 use Response;
 
 class PostController extends AppBaseController
@@ -22,6 +22,19 @@ class PostController extends AppBaseController
     public function index(PostDataTable $postDataTable)
     {
         return $postDataTable->render('posts.index');
+    }
+
+    /**
+     * Display a listing of the Post on the blog.
+     *
+     * @param Request $request
+     * 
+     * @return Response
+     */
+    public function blog_index(Request $request)
+    {
+        $posts = Post::all();
+        return view('blog.posts.index')->with('posts', $posts);
     }
 
     /**
@@ -72,6 +85,27 @@ class PostController extends AppBaseController
         }
 
         return view('posts.show')->with('post', $post);
+    }
+
+    /**
+     * Display the specified Post.
+     *
+     * @param  int $id
+     *
+     * @return Response
+     */
+    public function blog_show($id)
+    {
+        /** @var Post $post */
+        $post = Post::find($id);
+
+        if (empty($post)) {
+            Flash::error('Post not found');
+
+            return redirect(route('blog.posts.index'));
+        }
+
+        return view('blog.posts.post')->with('post', $post);
     }
 
     /**
