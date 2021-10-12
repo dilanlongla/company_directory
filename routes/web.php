@@ -15,10 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
+Route::get('/', [PostController::class, 'blog_index'])->name('blog.posts.index');
+Route::get('/home', [PostController::class, 'blog_index'])->name('blog.posts.index');
 Route::get('/posts', [PostController::class, 'blog_index'])->name('blog.posts.index');
 Route::get('/posts/{id}', [PostController::class, 'blog_show'])->name('blog.posts.post');
 Route::get('/services', [ServiceController::class, 'blog_index'])->name('blog.services.index');
