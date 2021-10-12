@@ -27,6 +27,7 @@ class User extends Authenticatable
         'description',
         'profile_pic',
         'logo',
+        'password',
     ];
 
     /**
