@@ -99,13 +99,29 @@ class PostController extends AppBaseController
         /** @var Post $post */
         $post = Post::find($id);
 
+        // get previous post
+        $previous = Post::where('id', '<', $id)->max('id');
+
+        // get next post
+        $next = Post::where('id', '>', $id)->min('id');
+
+        if ($previous == '') {
+            $previous = $post;
+        } else {
+            $previous = Post::find($previous);
+        }
+        if ($next == '') {
+            $next = $post;
+        } else {
+            $next = Post::find($next);
+        }
+
         if (empty($post)) {
             Flash::error('Post not found');
-
             return redirect(route('blog.posts.index'));
         }
 
-        return view('blog.posts.post')->with('post', $post);
+        return view('blog.posts.post', compact('post', 'previous', 'next'));
     }
 
     /**

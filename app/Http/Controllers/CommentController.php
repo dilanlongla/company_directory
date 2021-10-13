@@ -7,8 +7,9 @@ use App\Http\Requests;
 use App\Http\Requests\CreateCommentRequest;
 use App\Http\Requests\UpdateCommentRequest;
 use App\Models\Comment;
-use Flash;
+// use Flash;
 use App\Http\Controllers\AppBaseController;
+use Laracasts\Flash\Flash;
 use Response;
 
 class CommentController extends AppBaseController
@@ -44,13 +45,12 @@ class CommentController extends AppBaseController
     public function store(CreateCommentRequest $request)
     {
         $input = $request->all();
-
         /** @var Comment $comment */
         $comment = Comment::create($input);
 
         Flash::success('Comment saved successfully.');
 
-        return redirect(route('comments.index'));
+        return redirect()->back();
     }
 
     /**

@@ -21,15 +21,15 @@ class Comment extends Model
     use HasFactory;
 
     public $table = 'comments';
-    
 
     protected $dates = ['deleted_at'];
 
-
-
     public $fillable = [
         'comment',
-        'rating'
+        'rating',
+        'email',
+        'name',
+        'post_id',
     ];
 
     /**
@@ -48,9 +48,15 @@ class Comment extends Model
      *
      * @var array
      */
-    public static $rules = [
-        
-    ];
+    public static $rules = [];
 
-    
+    public function post()
+    {
+        return $this->belongsTo(\App\Models\Post::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(\App\Models\User::class);
+    }
 }

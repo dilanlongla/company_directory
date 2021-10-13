@@ -20,7 +20,7 @@ class Category extends Model
     use HasFactory;
 
     public $table = 'categories';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -49,5 +49,8 @@ class Category extends Model
         'name' => 'exit'
     ];
 
-    
+    public function posts()
+    {
+        return $this->belongsToMany(\App\Models\Post::class, 'post_categories');
+    }
 }

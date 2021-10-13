@@ -22,11 +22,8 @@ class Post extends Model
     use HasFactory;
 
     public $table = 'posts';
-    
 
     protected $dates = ['deleted_at'];
-
-
 
     public $fillable = [
         'title',
@@ -51,9 +48,20 @@ class Post extends Model
      *
      * @var array
      */
-    public static $rules = [
-        
-    ];
+    public static $rules = [];
 
-    
+    public function user()
+    {
+        return $this->belongsTo(\App\Models\User::class);
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(\App\Models\Category::class, 'post_categories');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(\App\Models\Comment::class);
+    }
 }
