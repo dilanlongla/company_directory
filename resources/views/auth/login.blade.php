@@ -74,9 +74,8 @@
                         <div class="card-body text-center">
                             <div>
                                 <h2>Sign up</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.</p>
-                                <a class="btn bg-white text-black active mt-3" href="{{ url('/register') }}">Register Now!</a>
+                                <p>With this option you will be able to make publications and share information about your various services to the visitors of the plateform.</p>
+                                <a class="btn bg-white text-black active mt-3" href="{{ url('/register') }}">Request to be company!</a>
                             </div>
                         </div>
                     </div>

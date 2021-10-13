@@ -84,12 +84,12 @@
     </div>
     <footer class="app-footer">
         <div>
-            <a href="#">Laravel </a>
-            <span>&copy; 2021 LeleServe.</span>
+            <a href="#">L'Afrik Serve</a>
+            <span>&copy; 2021 Enterprise Directory.</span>
         </div>
         <div class="ml-auto">
             <span>Powered by</span>
-            <a href="#">Lele</a>
+            <a href="#">L'Afrik Serve</a>
         </div>
     </footer>
 </body>

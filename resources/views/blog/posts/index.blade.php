@@ -8,7 +8,7 @@
             @foreach ($posts as $post)
             <!-- post -->
             <div class="post col-xl-6">
-                <div class="post-thumbnail"><a href="{{ route('blog.posts.post', [$post->id]) }}"><img src="img/blog-post-1.jpeg" alt="..." class="img-fluid"></a></div>
+                <div class="post-thumbnail"><a href="{{ route('blog.posts.post', [$post->id]) }}"><img src="{{asset('img/featured-pic-1')}}" alt="..." class="img-fluid"></a></div>
                 <div class="post-details">
                     <div class="post-meta d-flex justify-content-between">
                         <div class="date meta-last">{{date("F",strtotime($post->created_at))}} | {{date("Y",strtotime($post->created_at))}}</div>
@@ -17,7 +17,7 @@
                             <a href="{{route('blog.posts.category', [$category->id])}}">{{$category->name}}</a>
                             @endforeach
                         </div>
-                    </div><a href="post.html">
+                    </div><a href="{{ route('blog.posts.post', [$post->id]) }}">
                         <h3 class="h4">{{$post->title}}</h3>
                     </a>
                     <p class="text-muted">{{$post->body}}</p>

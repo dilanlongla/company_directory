@@ -127,11 +127,12 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <p>&copy; 2017. All rights reserved. thesolutionist.me</p>
+                        <a href="#">L'Afrik Serve</a>
+                        <span>&copy; 2021 Enterprise Directory.</span>
                     </div>
                     <div class="col-md-6 text-right">
-                        <p>Template By <a href="https://bootstrapious.com/p/bootstrap-carousel" class="text-white">Bootstrapious</a>
-                            <!-- Please do not remove the backlink to Bootstrap Temple unless you purchase an attribution-free license @ Bootstrap Temple or support us at http://bootstrapious.com/donate. It is part of the license conditions. Thanks for understanding :)                         -->
+                        <p>
+                            <a href="#">L'Afrik Serve</a>
                         </p>
                     </div>
                 </div>

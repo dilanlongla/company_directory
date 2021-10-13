@@ -7,7 +7,7 @@
         <main class="post blog-post col-lg-8">
             <div class="container">
                 <div class="post-single">
-                    <div class="post-thumbnail"><img src="img/blog-post-3.jpeg" alt="..." class="img-fluid"></div>
+                    <div class="post-thumbnail"><img src="{{asset('img/featured-pic-1.jpeg')}}" alt="..." class="img-fluid"></div>
                     <div class="post-details">
                         <div class="post-meta d-flex justify-content-between">
                             <div class="category">
@@ -16,7 +16,7 @@
                                 @endforeach
                             </div>
                         </div>
-                        <h1>{{$post->title}}<a href="#"><i class="fa fa-bookmark-o"></i></a></h1>
+                        <h1>{{$post->title}}<a href="{{ route('blog.posts.post', [$post->id]) }}"><i class="fa fa-bookmark-o"></i></a></h1>
                         <div class="post-footer d-flex align-items-center flex-column flex-sm-row"><a href="#" class="author d-flex align-items-center flex-wrap">
                                 <div class="avatar"><img src="img/avatar-1.jpg" alt="..." class="img-fluid"></div>
                                 <div class="title"><span>{{$post->user->firstname}}</span></div>
@@ -109,7 +109,7 @@
                     @foreach ($latest_posts as $post)
                     <a href="{{ route('blog.posts.post', [$post->id]) }}">
                         <div class="item d-flex align-items-center">
-                            <div class="image"><img src="img/small-thumbnail-1.jpg" alt="..." class="img-fluid"></div>
+                            <div class="image"><img src="{{asset('img/featured-pic-1.jpeg')}}" alt="..." class="img-fluid"></div>
                             <div class="title"><strong>{{$post->title}}</strong>
                                 <div class="d-flex align-items-center">
                                     <div class="comments"><i class="icon-comment"></i>{{count($post->comments)}}</div>
