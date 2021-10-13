@@ -25,7 +25,7 @@ Route::get('/posts', [PostController::class, 'blog_index'])->name('blog.posts.in
 Route::get('/posts/{id}', [PostController::class, 'blog_show'])->name('blog.posts.post');
 Route::get('/services', [ServiceController::class, 'blog_index'])->name('blog.services.index');
 Route::get('/services/service', [ServiceController::class, 'blog_index'])->name('blog.services.service');
-
+Route::get('/posts/category/{id}', [PostController::class, 'show_by_category'])->name('blog.posts.category');
 
 Auth::routes();
 

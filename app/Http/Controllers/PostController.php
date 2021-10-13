@@ -8,6 +8,7 @@ use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
 use Flash;
 use App\Http\Controllers\AppBaseController;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Response;
 
@@ -34,7 +35,25 @@ class PostController extends AppBaseController
     public function blog_index(Request $request)
     {
         $posts = Post::all();
-        return view('blog.posts.index')->with('posts', $posts);
+
+        /** @var Category $post */
+        $categories = Category::all();
+
+        $latest_posts = Post::orderBy('id', 'desc')->take(5)->get();
+        return view('blog.posts.index', compact('posts', 'latest_posts', 'categories'));
+    }
+
+    public function show_by_category($id)
+    {
+        /** @var Category $post */
+        $posts = Category::find($id)->posts()->get();
+
+        /** @var Category $post */
+        $categories = Category::all();
+
+        $latest_posts = Post::orderBy('id', 'desc')->take(5)->get();
+
+        return view('blog.posts.index', compact('posts', 'latest_posts', 'categories'));
     }
 
     /**
@@ -87,6 +106,7 @@ class PostController extends AppBaseController
         return view('posts.show')->with('post', $post);
     }
 
+
     /**
      * Display the specified Post.
      *
@@ -98,6 +118,11 @@ class PostController extends AppBaseController
     {
         /** @var Post $post */
         $post = Post::find($id);
+
+        /** @var Category $post */
+        $categories = Category::all();
+
+        $latest_posts = Post::orderBy('id', 'desc')->take(5)->get();
 
         // get previous post
         $previous = Post::where('id', '<', $id)->max('id');
@@ -121,7 +146,7 @@ class PostController extends AppBaseController
             return redirect(route('blog.posts.index'));
         }
 
-        return view('blog.posts.post', compact('post', 'previous', 'next'));
+        return view('blog.posts.post', compact('post', 'previous', 'next', 'latest_posts', 'categories'));
     }
 
     /**
