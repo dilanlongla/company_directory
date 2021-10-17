@@ -77,6 +77,13 @@ class PostController extends AppBaseController
     {
         $input = $request->all();
 
+        if ($image = $request->file('image')) {
+            $destinationPath = 'image/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+        }
+
         /** @var Post $post */
         $post = Post::create($input);
 
@@ -189,7 +196,17 @@ class PostController extends AppBaseController
             return redirect(route('posts.index'));
         }
 
-        $post->fill($request->all());
+        $input = $request->all();
+        if ($image = $request->file('image')) {
+            $destinationPath = 'image/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+        } else {
+            unset($input['image']);
+        }
+
+        $post->fill($input);
         $post->save();
 
         Flash::success('Post updated successfully.');

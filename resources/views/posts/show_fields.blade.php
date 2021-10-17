@@ -13,7 +13,7 @@
 <!-- Image Field -->
 <div class="form-group">
     {!! Form::label('image', 'Image:') !!}
-    <p>{{ $post->image }}</p>
+    <img src="{{ asset('image/'.$post->image)}}" style="width:500px; max-height: 500px;">
 </div>
 
 <!-- Created At Field -->
@@ -27,4 +27,3 @@
     {!! Form::label('updated_at', 'Updated At:') !!}
     <p>{{ $post->updated_at }}</p>
 </div>
-

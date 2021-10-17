@@ -21,7 +21,7 @@ class Service extends Model
     use HasFactory;
 
     public $table = 'services';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -29,7 +29,8 @@ class Service extends Model
 
     public $fillable = [
         'title',
-        'body'
+        'body',
+        'image'
     ];
 
     /**
@@ -48,9 +49,20 @@ class Service extends Model
      *
      * @var array
      */
-    public static $rules = [
-        
-    ];
+    public static $rules = [];
 
-    
+    public function user()
+    {
+        return $this->belongsTo(\App\Models\User::class);
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(\App\Models\Category::class, 'service_categories');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(\App\Models\Comment::class);
+    }
 }

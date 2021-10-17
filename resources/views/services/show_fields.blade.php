@@ -10,6 +10,12 @@
     <p>{{ $service->body }}</p>
 </div>
 
+<!-- Image Field -->
+<div class="form-group">
+    {!! Form::label('image', 'Image:') !!}
+    <img src="{{ asset('image/'.$service->image)}}" style="width:500px; max-height: 500px;">
+</div>
+
 <!-- Created At Field -->
 <div class="form-group">
     {!! Form::label('created_at', 'Created At:') !!}
@@ -21,4 +27,3 @@
     {!! Form::label('updated_at', 'Updated At:') !!}
     <p>{{ $service->updated_at }}</p>
 </div>
-

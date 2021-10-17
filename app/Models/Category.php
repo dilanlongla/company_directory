@@ -53,4 +53,9 @@ class Category extends Model
     {
         return $this->belongsToMany(\App\Models\Post::class, 'post_categories');
     }
+
+    public function services()
+    {
+        return $this->belongsToMany(\App\Models\Service::class, 'service_categories');
+    }
 }

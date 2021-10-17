@@ -13,7 +13,12 @@
 <!-- Image Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('image', 'Image:') !!}
-    {!! Form::text('image', null, ['class' => 'form-control']) !!}
+    </br>
+    @if (isset($post))
+    <img src="{{ asset('image/'.$post->image)}}" style="width:500px; max-height: 500px;">
+    @endif
+    </br>
+    {!! Form::file('image', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->
