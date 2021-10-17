@@ -30,7 +30,8 @@ class Service extends Model
     public $fillable = [
         'title',
         'body',
-        'image'
+        'image',
+        'user_id'
     ];
 
     /**
@@ -59,10 +60,5 @@ class Service extends Model
     public function categories()
     {
         return $this->belongsToMany(\App\Models\Category::class, 'service_categories');
-    }
-
-    public function comments()
-    {
-        return $this->hasMany(\App\Models\Comment::class);
     }
 }

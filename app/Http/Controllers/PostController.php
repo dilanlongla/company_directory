@@ -9,6 +9,7 @@ use App\Models\Post;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use App\Models\Category;
+use Auth;
 use Illuminate\Http\Request;
 use Response;
 

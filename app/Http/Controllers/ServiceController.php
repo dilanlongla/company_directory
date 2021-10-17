@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateServiceRequest;
 use App\Models\Service;
 use Flash;
 use App\Http\Controllers\AppBaseController;
+use Auth;
 use Illuminate\Http\Request;
 use Response;
 
@@ -35,7 +36,8 @@ class ServiceController extends AppBaseController
     public function blog_index(Request $request)
     {
         $services = Service::all();
-        return view('blog.services.index')->with('services', $services);
+        $latest_services = Service::orderBy('id', 'desc')->take(5)->get();
+        return view('blog.services.index', compact('services', 'latest_services'));
     }
 
     /**
@@ -58,6 +60,13 @@ class ServiceController extends AppBaseController
     public function store(CreateServiceRequest $request)
     {
         $input = $request->all();
+
+        if ($image = $request->file('image')) {
+            $destinationPath = 'image/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+        }
 
         /** @var Service $service */
         $service = Service::create($input);
@@ -100,13 +109,32 @@ class ServiceController extends AppBaseController
         /** @var Service $post */
         $service = Service::find($id);
 
+        $latest_services = Service::orderBy('id', 'desc')->take(5)->get();
+
+        // get previous post
+        $previous = Service::where('id', '<', $id)->max('id');
+
+        // get next post
+        $next = Service::where('id', '>', $id)->min('id');
+
+        if ($previous == '') {
+            $previous = $service;
+        } else {
+            $previous = Service::find($previous);
+        }
+        if ($next == '') {
+            $next = $service;
+        } else {
+            $next = Service::find($next);
+        }
+
         if (empty($post)) {
             Flash::error('Service not found');
 
             return redirect(route('blog.services.index'));
         }
 
-        return view('blog.services.service')->with('service', $service);
+        return view('blog.services.service', compact('service', 'previous', 'next', 'latest_services'));
     }
 
 
@@ -148,6 +176,16 @@ class ServiceController extends AppBaseController
             Flash::error('Service not found');
 
             return redirect(route('services.index'));
+        }
+
+        $input = $request->all();
+        if ($image = $request->file('image')) {
+            $destinationPath = 'image/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
+        } else {
+            unset($input['image']);
         }
 
         $service->fill($request->all());

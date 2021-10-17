@@ -1,3 +1,8 @@
+<!-- user id Field -->
+<div class="form-group col-sm-12 col-lg-12">
+    {!! Form::hidden('user_id', Auth::id(), ['class' => 'form-control']) !!}
+</div>
+
 <!-- Title Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('title', 'Title:') !!}

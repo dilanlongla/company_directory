@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Post;
+use Carbon\Carbon;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 
@@ -18,7 +19,20 @@ class PostDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'posts.datatables_actions');
+        return $dataTable
+            ->addColumn('action', 'posts.datatables_actions')
+            ->editColumn(
+                'created_at',
+                function ($data) {
+                    $formatedDate = Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at)->format('d-m-Y');
+                    return $formatedDate;
+                }
+            )
+            ->editColumn('image', function ($service) {
+                $path = asset('image/' . $service->image);
+                return "<img src='" . $path . "' style='width:500px; max-height: 300px;' />";
+            })
+            ->rawColumns(['image'], true);
     }
 
     /**

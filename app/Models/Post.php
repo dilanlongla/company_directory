@@ -28,7 +28,8 @@ class Post extends Model
     public $fillable = [
         'title',
         'body',
-        'image'
+        'image',
+        'user_id'
     ];
 
     /**

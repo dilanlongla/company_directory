@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Service;
+use Carbon\Carbon;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 
@@ -17,7 +18,17 @@ class ServiceDataTable extends DataTable
     public function dataTable($query)
     {
         $dataTable = new EloquentDataTable($query);
-
+        $dataTable->editColumn(
+            'created_at',
+            function ($data) {
+                $formatedDate = Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at)->format('d-m-Y');
+                return $formatedDate;
+            }
+        );
+        $dataTable->editColumn('image', function ($service) {
+            $path = asset('image/' . $service->image);
+            return "<img src='" . $path . "' style='width:500px; max-height: 300px;' />";
+        })->rawColumns(['image'], true);
         return $dataTable->addColumn('action', 'services.datatables_actions');
     }
 
@@ -66,7 +77,9 @@ class ServiceDataTable extends DataTable
     {
         return [
             'title',
-            'body'
+            'body',
+            'image',
+            'created_at'
         ];
     }
 

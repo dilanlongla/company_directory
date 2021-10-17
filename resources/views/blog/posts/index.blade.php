@@ -8,7 +8,11 @@
             @foreach ($posts as $post)
             <!-- post -->
             <div class="post col-xl-6">
-                <div class="post-thumbnail"><a href="{{ route('blog.posts.post', [$post->id]) }}"><img src="{{asset('img/featured-pic-1')}}" alt="..." class="img-fluid"></a></div>
+                <div class="post-thumbnail">
+                    <a href="{{ route('blog.posts.post', [$post->id]) }}">
+                        <img src="{{asset('image/'.$post->image)}}" alt="..." class="img-fluid">
+                    </a>
+                </div>
                 <div class="post-details">
                     <div class="post-meta d-flex justify-content-between">
                         <div class="date meta-last">{{date("F",strtotime($post->created_at))}} | {{date("Y",strtotime($post->created_at))}}</div>
@@ -48,7 +52,7 @@
     <!-- Widget [Search Bar Widget]-->
     <div class="widget search">
         <header>
-            <h3 class="h6">Search the blog</h3>
+            <h3 class="h6">Search for a service</h3>
         </header>
         <form action="#" class="search-form">
             <div class="form-group">
@@ -66,7 +70,7 @@
             @foreach ($latest_posts as $post)
             <a href="{{ route('blog.posts.post', [$post->id]) }}">
                 <div class="item d-flex align-items-center">
-                    <div class="image"><img src="img/small-thumbnail-1.jpg" alt="..." class="img-fluid"></div>
+                    <div class="image"><img src="{{asset('image/'.$post->image)}}" alt="..." class="img-fluid"></div>
                     <div class="title"><strong>{{$post->title}}</strong>
                         <div class="d-flex align-items-center">
                             <div class="comments"><i class="icon-comment"></i>{{count($post->comments)}}</div>
