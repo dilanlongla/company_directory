@@ -26,12 +26,13 @@ Route::get('/posts/{id}', [PostController::class, 'blog_show'])->name('blog.post
 Route::get('/services', [ServiceController::class, 'blog_index'])->name('blog.services.index');
 Route::get('/services/service', [ServiceController::class, 'blog_index'])->name('blog.services.service');
 Route::get('/posts/category/{id}', [PostController::class, 'show_by_category'])->name('blog.posts.category');
+Route::resource('manage/comments', App\Http\Controllers\CommentController::class)->only(['store']);
 
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::resource('manage/comments', App\Http\Controllers\CommentController::class);
+    Route::resource('manage/comments', App\Http\Controllers\CommentController::class)->except(['store']);
 
     Route::resource('manage/posts', App\Http\Controllers\PostController::class);
 

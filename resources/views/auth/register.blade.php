@@ -28,8 +28,8 @@
                     <div class="card-body p-4">
                         <form method="post" action="{{ url('/register') }}">
                             @csrf
-                            <h1>Register</h1>
-                            <p class="text-muted">Create your account</p>
+                            <h1>Request Form</h1>
+                            <p class="text-muted">Fill all fields and submit</p>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
@@ -45,12 +45,36 @@
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="icon-user"></i>
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control {{ $errors->has('company_name')?'is-invalid':'' }}" name="company_name" value="{{ old('company_name') }}" placeholder="Company Name">
+                                @if ($errors->has('company_name'))
+                                <span class="invalid-feedback">
+                                    <strong>{{ $errors->first('company_name') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
                                     <span class="input-group-text">@</span>
                                 </div>
                                 <input type="email" class="form-control {{ $errors->has('email')?'is-invalid':'' }}" name="email" value="{{ old('email') }}" placeholder="Email">
                                 @if ($errors->has('email'))
                                 <span class="invalid-feedback">
                                     <strong>{{ $errors->first('email') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">@</span>
+                                </div>
+                                <input type="tel" class="form-control {{ $errors->has('tel')?'is-invalid':'' }}" name="tel" value="{{ old('tel') }}" placeholder="Phone Number">
+                                @if ($errors->has('tel'))
+                                <span class="invalid-feedback">
+                                    <strong>{{ $errors->first('tel') }}</strong>
                                 </span>
                                 @endif
                             </div>
@@ -80,7 +104,7 @@
                                 </span>
                                 @endif
                             </div>
-                            <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+                            <button type="submit" class="btn bg-green text-white  px-4">Register</button>
                             <a href="{{ url('/login') }}" class="text-center">I already have a membership</a>
                         </form>
                     </div>
