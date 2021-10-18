@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Category;
+use Auth;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 

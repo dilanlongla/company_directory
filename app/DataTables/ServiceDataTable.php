@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Service;
+use Auth;
 use Carbon\Carbon;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
@@ -40,7 +41,7 @@ class ServiceDataTable extends DataTable
      */
     public function query(Service $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()->where('user_id', '=', Auth::id());
     }
 
     /**

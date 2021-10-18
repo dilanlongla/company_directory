@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Post;
+use Auth;
 use Carbon\Carbon;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
@@ -43,7 +44,7 @@ class PostDataTable extends DataTable
      */
     public function query(Post $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()->where('user_id', '=', Auth::id());
     }
 
     /**
