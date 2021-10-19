@@ -34,8 +34,8 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="#">
-            <img class="navbar-brand-full" src="{{asset('img/eds.jpg')}}" width="30" height="30" alt="InfyOm Logo">
-            <img class="navbar-brand-minimized" src="{{asset('img/eds.jpg')}}" width="30" height="30" alt="InfyOm Logo">
+            <img class="navbar-brand-full" src="{{asset('image/logo.jpg')}}" width="30" height="30" alt="InfyOm Logo">
+            <img class="navbar-brand-minimized" src="{{asset('image/logo.jpg')}}" width="30" height="30" alt="InfyOm Logo">
         </a>
         <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
             <span class="navbar-toggler-icon"></span>
