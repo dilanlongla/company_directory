@@ -23,7 +23,7 @@
                     </a>
                     <p class="text-muted">{{$service->body}}</p>
                     <footer class="post-footer d-flex align-items-center"><a href="#" class="author d-flex align-items-center flex-wrap">
-                            <div class="avatar"><img src="img/avatar-3.jpg" alt="..." class="img-fluid"></div>
+                            <div class="avatar"><img src="{{asset('img/free_profile.png')}}" alt="..." class="img-fluid"></div>
                             <div class="title"><span>{{$service->user->firstname}}</span></div>
                         </a>
                         <div class="date"><i class="icon-clock"></i>{{$service->created_at->diffForHumans()}}</div>

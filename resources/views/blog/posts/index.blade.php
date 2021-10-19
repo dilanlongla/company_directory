@@ -26,11 +26,11 @@
                     </a>
                     <p class="text-muted">{{$post->body}}</p>
                     <footer class="post-footer d-flex align-items-center"><a href="#" class="author d-flex align-items-center flex-wrap">
-                            <div class="avatar"><img src="img/avatar-3.jpg" alt="..." class="img-fluid"></div>
+                            <div class="avatar"><img src="{{asset('img/free_profile.png')}}" alt="..." class="img-fluid"></div>
                             <div class="title"><span>{{$post->user->firstname}}</span></div>
                         </a>
                         <div class="date"><i class="icon-clock"></i>{{$post->created_at->diffForHumans()}}</div>
-                        <div class="comments meta-last"><i class="icon-comment"></i>12</div>
+                        <div class="comments meta-last"><i class="icon-comment"></i>{{count($post->comments)}}</div>
                     </footer>
                 </div>
             </div>
