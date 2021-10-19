@@ -1,9 +1,9 @@
-<!-- <li class="nav-item {{ Request::is('comments*') ? 'active' : '' }}">
+<li class="nav-item {{ Request::is('comments*') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('comments.index') }}">
         <i class="nav-icon icon-cursor"></i>
         <span>Comments</span>
     </a>
-</li> -->
+</li>
 <li class="nav-item {{ Request::is('posts*') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('posts.index') }}">
         <i class="nav-icon icon-cursor"></i>

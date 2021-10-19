@@ -81,9 +81,9 @@ class PostController extends AppBaseController
         if ($image = $request->file('image')) {
             $destinationPath = 'image/';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['image'] = "$profileImage";
         }
-        $image->move($destinationPath, $profileImage);
-        $input['image'] = "$profileImage";
 
         /** @var Post $post */
         $post = Post::create($input);
